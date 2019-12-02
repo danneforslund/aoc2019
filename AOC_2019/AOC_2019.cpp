@@ -6,6 +6,10 @@ int main()
 {
 	/* Calculate fuel required */
 	Day1 day1;
-	uint32_t fuel = day1.CalculateFuel();
-	cout << "Fuel required: " << fuel;
+	int fuel = day1.CalculateFuel();
+	cout << "Fuel required: " << fuel << endl;
+	 	
+	int fuelWithOwnMass = day1.CalculateFuel(true); 
+	cout << "Fuel required including own mass: " << fuelWithOwnMass << endl;
+
 }
