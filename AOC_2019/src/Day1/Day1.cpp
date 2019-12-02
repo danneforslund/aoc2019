@@ -6,20 +6,21 @@
 
 #include "Day1.h"
 
-std::uint32_t Day1_CalculateFuel() {
-	std::uint32_t total_consumption{};
+using namespace std;
+
+uint32_t Day1_CalculateFuel() {
+	uint32_t total_consumption{};
 
 	//Do a small test
 	Day1_Test();
 
-	//Read mass data
-	std::string file_path("data/Day1/massdata.txt");
-	std::ifstream data_stream(file_path);
+	//Read mass data	
+	ifstream data_stream("data/Day1/massdata.txt");
 	if (data_stream) {
-		std::string line;
+		string line;
 		while (getline(data_stream, line))
 		{
-			std::uint32_t module_mass = std::stoi(line);
+			uint32_t module_mass = stoi(line);
 			total_consumption += Day1_GetModuleFuel(module_mass);
 		}
 	}
@@ -27,7 +28,7 @@ std::uint32_t Day1_CalculateFuel() {
 	return total_consumption;
 }
 
-std::uint32_t Day1_GetModuleFuel(std::uint32_t module_mass) {
+uint32_t Day1_GetModuleFuel(uint32_t module_mass) {
 	return floor(module_mass / 3) - 2;
 }
 
