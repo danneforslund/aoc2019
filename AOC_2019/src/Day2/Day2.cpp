@@ -25,7 +25,7 @@ public:
 		}
 		
 		//Part 1
-		return RunPart1(line, true, false);
+		return RunPart1(line, false);
 	}
 
 	string FindIntCode(int desiredOutcome) {
@@ -42,24 +42,24 @@ public:
 
 private:	
 	void Test() {
-		assert(RunPart1("1,0,0,0,99") == "2,0,0,0,99");
-		assert(RunPart1("2,3,0,3,99") == "2,3,0,6,99");
-		assert(RunPart1("2,4,4,5,99,0") == "2,4,4,5,99,9801");
-		assert(RunPart1("1,1,1,4,99,5,6,0,99") == "30,1,1,4,2,5,6,0,99");
-		assert(RunPart1("1,9,10,3,2,3,11,0,99,30,40,50") == "3500,9,10,70,2,3,11,0,99,30,40,50");		
+		assert(RunPart1("1,0,0,0,99", true) == "2,0,0,0,99");
+		assert(RunPart1("2,3,0,3,99", true) == "2,3,0,6,99");
+		assert(RunPart1("2,4,4,5,99,0", true) == "2,4,4,5,99,9801");
+		assert(RunPart1("1,1,1,4,99,5,6,0,99", true) == "30,1,1,4,2,5,6,0,99");
+		assert(RunPart1("1,9,10,3,2,3,11,0,99,30,40,50", true) == "3500,9,10,70,2,3,11,0,99,30,40,50");
 	}
 
-	string RunPart1(string codes, bool use1202 = false, bool returnArray = true) {		
+	string RunPart1(string codes, bool isTest = false) {		
 		//Read codes to vector
 		vector<int> v_codes = SplitArray(codes);		
-		if (use1202) {
+		if (!isTest) {
 			v_codes[1] = 12;
 			v_codes[2] = 2;
 		}		
 
 		vector<int> transformedVector = TransformVector(v_codes);
 
-		if (returnArray)
+		if (isTest)
 			return JoinArray(transformedVector);
 
 		stringstream result;
@@ -86,8 +86,8 @@ private:
 	
 	vector<int> TransformVector(vector<int> vector) {
 		//Transform vector as defined by the task
-		for (std::size_t i = 0; i < vector.size(); i += 4) {
-			if ((vector.size() - i) < 4) { //if we're possibly out of bounds, assume it's time to return.
+		for (size_t i = 0; i < vector.size(); i += 4) {
+			if ((vector.size() - i) < 4) { //we're possibly out of bounds, just assume it's time to return.
 				break;
 			}
 
