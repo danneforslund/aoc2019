@@ -155,9 +155,6 @@
     <ClCompile Include="src\Day1\Day1.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Day1\Day1.h" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="data\Day1\massdata.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
